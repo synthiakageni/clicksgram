@@ -21,8 +21,8 @@ To run the app in your machine or server,use the following steps:
 prerequisite
 1.A text editor preferably visual studio code.
 
-- git clone the repo git clone https://github.com/synthiakageni/Awesome-clicks.git
-- cd "awesome clicks"
+- git clone the repo git clone https://github.com/synthiakageni/clicksgram.git
+- cd "clicksgram"
 - code .
 
 
