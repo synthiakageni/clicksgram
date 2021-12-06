@@ -11,6 +11,7 @@ This is a  personal gallery application where I  post my photos.
 - Python
 - HTML
 - CSS
+- Javascript
 
 
 
