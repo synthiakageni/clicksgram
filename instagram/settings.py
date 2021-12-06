@@ -80,8 +80,8 @@ DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'instagram',
-        'USER': '<synthia >',
-    'PASSWORD':'<123>',
+        'USER': 'synthia',
+    'PASSWORD':'123',
     }
 }
 
