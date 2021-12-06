@@ -1,8 +1,7 @@
 ### Project-Name
-Awesome clicks
+Clicksgram
 ### Description
-This is a  personal gallery application where I  display my photos.A user can also search for a photo based on the category or location the photo was taken.
-
+This is a  personal gallery application where I  post my photos.
 ### Author
 <a href="https://github.com/synthiakageni"> SYNTHIA KAGENI</a>
 
