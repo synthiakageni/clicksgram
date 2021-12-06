@@ -16,7 +16,7 @@ class Profile(models.Model):
     followers = models.ManyToManyField(User, related_name='followers', blank=True)
     
     def __str__(self):
-        return self.name
+        return self.username
 
 # Method for followers
     def total_followers(self):
@@ -58,12 +58,12 @@ class Image(models.Model):
     image_name = models.CharField(max_length=25)
     caption = models.CharField(max_length=150)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None)
-    likes = models.ForeignKey(Likes, on_delete=CASCADE, default=None)
+    likes = models.ForeignKey(Likes, on_delete=CASCADE, default=0)
     comment = models.CharField(max_length=150)
     time_posted = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
-        return self.name
+        return str(self.user)    
 
 #Method for saving images
     def save_images(self):
