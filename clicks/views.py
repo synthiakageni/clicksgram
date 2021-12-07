@@ -48,6 +48,8 @@ def user_signup(request):
         form = UserCreationForm()
     return render(request, 'registration/signup.html',{"message":message, "form":form})
 # function for displaying all photos
+
+
 def homepage(request):
     images = Image.objects.all()
     return render(request, 'home.html', {"images":images})
