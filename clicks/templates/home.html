@@ -1,9 +1,151 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
-{% for image in images %}
-    <h1>hello</h1>
 
+
+<!--<li>
+    <a class='btn btn-default' href="/accounts/login">Login</a>
+  </li>-->
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: white;">
+    <div class="container-fluid" style="background-color: white;">
+      <a style="margin-left: 2rem;" class="navbar-brand" href="#">
+       <!-- <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">-->
+              <a class="navbar-brand" href="#" style="background-color: transparent;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWSn3WF7L-8B3D3khyH1Rs8UYq32hbGh32rQ&usqp=CAU" alt="" style="font-size: 9vh; background-color: transparent;" class="d-inline-block align-text-top">
+                
+              </a>
+           
+    </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <form class="d-flex" style="margin-left: 8rem;" action="{% url 'search_images' %}">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit"><i class="far fa-circle"></i>
+                <span class="visually-hidden"></span>
+              </div></button>
+          </form>
+        </ul>
+        
+        <span class="navbar-text">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}"><i class="far fa-plus-square" style="font-size: 7vh; margin-right: 2rem;"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="far fa-heart" style="font-size: 7vh; margin-right: 2rem;"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}"><i class="far fa-user-circle" style="font-size: 7vh; margin-right: 3rem;"></i></a>
+                        
+              
+                 
+                </li>
+              </ul>
+          
+        </span>
+      </div>
+    </div>
+  </nav>
+  </a>
+  <div class="container">
+    <!-- <div class="row align-items-center">-->
+      <div class="row">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="margin-left: 10rem; margin-bottom: 3rem;  display: inline-block;">
+ <br>
+     </div>
+     </div>
+     {% for image in images %}
+ <div style="margin: 3rem auto; width: 40rem">
+  <div class="card">
+    <h5 class="card-title">
+      <img class="rounded-circle mr-12 article-img" style="width: 70px;"
+      src="{{ image.image.url }}">
+      <a class="mr-2" href="{% url 'homepage' %}">{{ image.user }}</a>
+    </h5>
+    <a href="{% url 'homepage' %}">
+    <img
+      src="{{ image.image.url }}"
+      class="card-img-top"
+      alt="Phone"
+    /> </a><p class="mb-4">
+      {{ image.caption}}
+  </p>
+    <div class="card-body">
+      
+      <h6 class="card-subtitle mb-2 text-muted">
+      <p class="card-text">
+    
+      <div class="row align-items-center">
+        <div class="col">
+          <a href="{% url 'homepage' %}">
+            <i style="color: red; font-size: 16px;" class="fa fa-heart"></i>
+            {{image.likes}} like(s)
+        </a>
+        </div>
+        <div class="col">
+          <a href="/image/{{image.id}}/">
+            <i style=" font-size: 16px; color: blue;" class="fa fa-comment"></i>
+            {{ image.comments }} comment(s)
+        </a>
+        </div>
+        <div class="col">
+          <small style="opacity: 0.8; " class="white-important d-flex full-width flex-row-reverse">
+            {{ image.date_posted | date:"H:i l, d.m.y" }}
+        </small>
+        </div>
+      </div>
+     
+
+  </div>
+</div>
 {% endfor %}
 
 
-{% endblock %} -->
+<div class="row">
+  <div class="col-md-10">
+      <div class="card mt-4 mr-2 ml-2">
+          <div class="card-title text-secondary mt-2 mr-2 ml-2 ">Suggestions</div>
+          {% for image in images %}
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-2 mr-3 mt-1 mb-2">
+                      <img class="rounded-circle" src="{{ image.image.url }}"
+                           width="45px" height="45px">
+                  </div>
+            
+                  <div class="col-md-4">
+                  </div>
+              </div>
+          </div>
+
+          {% endfor %}
+
+<script>
+    function top() {
+    document.getElementById( 'top' ).scrollIntoView();    
+};
+
+function bottom() {
+    document.getElementById( 'bottom' ).scrollIntoView();
+    window.setTimeout( function () { top(); }, 2000 );
+};
+
+bottom();
+</script>
+
+
+</div>
+{% endblock %}
