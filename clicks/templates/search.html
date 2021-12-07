@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% if images %}
+    <h3>Found {{ users|length }} of searched term {{message}}</h3>
+    {% else %}
+    <h3>Found 0 users of searched term {{message}}</h3>
+    {% endif %}
+    <br>
+    <br>
+
+    <div class="row">
+      {% for person in users %}
+      <div class="card testimonial-card text-center">
+
+        <!-- Background color -->
+        <div class="card-up indigo lighten-1"></div>
+
+        <!-- Avatar -->
+        <div class="avatar mx-auto white">
+          <img src="/media/default.png" alt=" avatar" height="200" width="200">
+        </div>
+
+
+        <!-- Content -->
+        <div class="card-text">
+          <!-- Name -->
+          <a href="{% url 'profile' username=person.user %}">
+            <h4 class="card-title text-center pink-text"> {{.username}}</h4><a>
+              <hr>
+              <!-- Quotation -->
+
+        </div>
+
+      </div>
+      <!-- Card -->
+
+      {% endfor %}
+
+    </div>
+  </div>
+
+  {% endblock %}
