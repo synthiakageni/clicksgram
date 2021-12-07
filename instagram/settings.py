@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'clicks',
     'bootstrap3',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,6 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'instagram.wsgi.application'
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
 # Database
