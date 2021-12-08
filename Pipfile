@@ -9,6 +9,11 @@ django = "*"
 psycopg2 = "*"
 pillow = "*"
 django-crispy-forms = "*"
+whitenoise = "*"
+django-heroku = "*"
+python-decouple = "*"
+dj-database-url = "*"
+django-cloudinary-storage = "*"
 
 [dev-packages]
 

@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
-from clicks.forms import RegistrationForm
+
 
 # Create your views here.
 #Function login in the user
@@ -179,23 +179,3 @@ def save_image(request):
     else:
         return render(request,'profile.html', {'danger': 'Image upload Failed'})        
  
-@csrf_protect
-def register(request):
-    if request.method == "POST":
-        registerForm = RegistrationForm(request.POST)
-        if registerForm.is_valid():
-            registerForm.save()
-
-            for user in User.objects.all():
-                Profile.objects.get_or_create(mtumiaji = user) #get_or_create returns the object that it got and a boolean value that specifies whether the object was created or not.
-                # basically get_or_create is for avoiding duplicates
-
-                username = registerForm.cleaned_data.get('username') #cleaned_data returns a dic of validated form input fields and their values
-                messages.success(request, f'An account has been created for {username}')
-                return redirect('login')
-
-    else:
-        registerForm = RegistrationForm()
-
-    return render(request, 'registration/register.html', {"form":registerForm})
-
