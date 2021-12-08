@@ -53,6 +53,15 @@
               
                  
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link"style="background-color:red" href="{% url 'logout' %}">Logout</i></a>
+</li>
+              <li class="nav-item">
+                <p><a href=""></a></p>
+              </li>
+                 {% endif %}
+                </li>
               </ul>
           
         </span>
@@ -102,8 +111,8 @@
         </a>
         </div>
         <div class="col">
-          <small style="opacity: 0.8; " class="white-important d-flex full-width flex-row-reverse">
-            {{ image.date_posted | date:"H:i l, d.m.y" }}
+          <small style="opacity: 8.5; " class="white-important d-flex full-width flex-row-reverse">
+            {{ image.time_posted | date:"H:i l, d.m.y" }}
         </small>
         </div>
       </div>
@@ -114,24 +123,9 @@
 {% endfor %}
 
 
-<div class="row">
-  <div class="col-md-10">
-      <div class="card mt-4 mr-2 ml-2">
-          <div class="card-title text-secondary mt-2 mr-2 ml-2 ">Suggestions</div>
-          {% for image in images %}
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-2 mr-3 mt-1 mb-2">
-                      <img class="rounded-circle" src="{{ image.image.url }}"
-                           width="45px" height="45px">
-                  </div>
-            
-                  <div class="col-md-4">
-                  </div>
-              </div>
-          </div>
 
-          {% endfor %}
+            
+                  
 
 <script>
     function top() {

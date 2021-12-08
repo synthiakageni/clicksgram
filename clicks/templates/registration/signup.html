@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
-{% load bootstrap3%}
+{% load django_bootstrap5%}
 {% block content%}
-
+{%load static%}
 {% if form.errors%}
 
 <!DOCTYPE html>
@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   
 </head>
 <style>
     .card{
@@ -21,13 +22,14 @@
     position: relative;
     }
 </style>
-<body>
-    <div class="card">
-        <div class="alert text-center">
-            <span>There was a error with your form!</span>
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+<body class="form">
+    <div class="container">
+        <div class="alert text-left">
+            <span>Use a password with both uppercase and numbers</span>
         </div>
         {% endif %}
-        <div class="container">
+        <div class="container-fluid">
             <h5>{{ message }}</h5>
             <form action="{% url 'signup' %}" method="post">
                 {% csrf_token %}

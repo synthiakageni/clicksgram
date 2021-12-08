@@ -5,6 +5,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .models import *
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
+from clicks.forms import RegistrationForm
 
 # Create your views here.
 #Function login in the user
@@ -55,6 +58,7 @@ def homepage(request):
     return render(request, 'home.html', {"images":images})
 
 #function for displaying user profile
+
 def profile(request):
     current_user = request.user
     images = Image.objects.filter(user_id=current_user.id)
@@ -110,6 +114,7 @@ def save_comment(request):
         return redirect('/')
 #function for displaying a specific user
 def user_profile(request,id):
+
     if User.objects.filter(id=id).exists():
         user = User.objects.get(id=id)
         images = Image.objects.filter(user_id=id)
@@ -118,6 +123,7 @@ def user_profile(request,id):
     else:
         return redirect('/')
 #function for searching for a photo
+
 def search_images(request):
     
     if 'search' in request.GET and request.GET['search']:
@@ -131,6 +137,7 @@ def search_images(request):
         message = 'Invalid Search'
         return render(request,'search.html',{'danger':message})
 #Function for updating the user profile
+
 def update_profile(request):
     if request.method =='POST':
         current_user = request.user
@@ -143,12 +150,12 @@ def update_profile(request):
 
         user = User.objects.get(id=current_user.id)
 
-        if Profile.objects.filter(username_id=current_user.id).exists():
-            profile = Profile.objects.get(username_id=current_user.id)
+        if Profile.objects.filter(user_id=current_user.id).exists():
+            profile = Profile.objects.get(user_id=current_user.id)
             profile.bio = bio
             profile.save()
         else:
-            profile = Profile.objects.get(username_id=current_user.id, bio=bio)
+            profile = Profile.objects.get(user_id=current_user.id, bio=bio)
             profile.save_profile()
 
         user.first_name = first_name
@@ -159,5 +166,36 @@ def update_profile(request):
         return redirect('/profile',{'success': 'Profile Update Successfull'})
     else:
         return render(request,'profile.html',{'danger': 'Failed to update profile'})
+def save_image(request):
+    """Function for saving image"""
+    if request.method == 'POST':
+        image_name = request.POST['image_name']
+        image_caption = request.POST['image_caption']
+        image_file = request.FILES['image_file']
+        image_url = image_file['url']
+        image = Image(image_name=image_name,image_caption=image_caption,image=image_url,user_id=request.POST['user_id'])
+        image.save_image()
+        return redirect('/homepage',{'success': 'Image Upload Successful'})
+    else:
+        return render(request,'profile.html', {'danger': 'Image upload Failed'})        
  
+@csrf_protect
+def register(request):
+    if request.method == "POST":
+        registerForm = RegistrationForm(request.POST)
+        if registerForm.is_valid():
+            registerForm.save()
+
+            for user in User.objects.all():
+                Profile.objects.get_or_create(mtumiaji = user) #get_or_create returns the object that it got and a boolean value that specifies whether the object was created or not.
+                # basically get_or_create is for avoiding duplicates
+
+                username = registerForm.cleaned_data.get('username') #cleaned_data returns a dic of validated form input fields and their values
+                messages.success(request, f'An account has been created for {username}')
+                return redirect('login')
+
+    else:
+        registerForm = RegistrationForm()
+
+    return render(request, 'registration/register.html', {"form":registerForm})
 

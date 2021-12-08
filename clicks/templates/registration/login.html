@@ -1,29 +1,22 @@
 {% extends 'base.html' %}
-% block content%}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+{% block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <a class="navbar-brand" href="#" style="background-color: transparent;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWSn3WF7L-8B3D3khyH1Rs8UYq32hbGh32rQ&usqp=CAU" alt="" style="font-size: 9vh; background-color: transparent;" class="d-inline-block align-text-top">
+        
+      </a> 
 
-<style>
-  .card{
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    position: relative;
+    </div>
+    <div class="col-md-7">
+
     
-  }
-</style>
 
-<body class="card">
+<body class="card" style="color: purple;">
   <div class="container">
-    <h3>{{ message }}</h3>
+    <h3>Login in !</h3>
   <form action="{% url 'login'%}" 
   method="POST">
       {% csrf_token %}
@@ -37,17 +30,17 @@
         <label for="exampleInputPassword1" class="form-label"><b><i>Password</i></b></label>
         <input name="password" type="password" class="form-control" id="exampleInputPassword1">
       </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1"><i>Agree To Terms and Conditions</i></label>
-      </div>
-      <button type="submit" class="btn btn-primary">LOGIN</button>
+      
+      <button type="submit" class="btn btn-outline-success">LOGIN</button>
     </form>
   </div>
   <div class="sign" style="padding-left: 28%; padding-top: 3%;">
-    <span class="p"><b>Don't have an account?</b></span>
+    <span class="p"><b>New here??</b></span>
       
-    <a href="signup/" class="ml-2" style="color:rgb(255, 0, 0);">Sign Up</a>
+    <a href="signup/" class="ml-2" style="color:blue;">CREATE ACCOUNT</a>
   </div>
 </body>
-</html>
+{% endblock %}
+</div>
+</div>
+</div>
